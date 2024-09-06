@@ -21,6 +21,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addStyleEntry('styles', './assets/styles/app.scss')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -70,4 +72,13 @@ Encore
     //.autoProvidejQuery()
 ;
 
-module.exports = Encore.getWebpackConfig();
+// Retrieve the Webpack configuration
+const config = Encore.getWebpackConfig();
+
+// Modify the stats configuration
+config.stats = {
+    warnings: false
+};
+
+// Export the final configuration
+module.exports = config;

@@ -1,0 +1,17 @@
+// assets/styles/bases/footer.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+footer {
+    background-color: $bg-color-nav;
+
+   a{
+            text-decoration: none !important;        
+    }
+
+    .me-4 img{
+        width: calc($font-size-large);
+    }
+}

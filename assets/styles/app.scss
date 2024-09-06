@@ -1,7 +1,21 @@
-// assets/styles/global.scss
+// assets/styles/app.scss
 
-// customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
+@import 'variables';
+@import 'mixins';
+
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+// Importations des composants
+@import 'global';
+@import 'composants/carteArticle';
+@import 'composants/formContact';
+
+// Importations des bases
+@import 'bases/nav';
+@import 'bases/footer';
+
+// Importations des pages
+@import 'pages/home';
+

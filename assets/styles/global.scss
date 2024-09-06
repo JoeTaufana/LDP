@@ -1,0 +1,113 @@
+// assets/styles/global.scss
+
+// Importer les variables
+@import 'variables';
+
+
+// Réinitialisation des styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+// Styles de base
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  background: $bg-color;
+  color: $primary-color;
+}
+
+// Importer les styles pour les sections
+
+.container{
+  padding: calc(1.5vw + 15px) 0;
+}
+
+// Importer les styles pour les titres
+h1, h2, h3, h4{
+  font-family: $font-family-title;
+  color: $secondary-color;
+  font-size: $font-size-large;
+  margin: $margin-large 0;
+}
+
+h5, h6{
+  font-size: $font-size-text;
+  font-weight: 700;
+}
+
+
+
+// Importer les styles pour les paragraphes
+
+p {
+  font-family: $font-family-text;
+  color: $primary-color;
+  font-size: $font-size-text;
+  line-height: 1.2;
+}
+
+// Importer les styles pour les liens
+
+
+
+// Importer les styles pour les listes
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-size: $font-size-text;
+  
+  list-style: none;
+}
+
+// Importer les styles pour les boutons
+
+.button-primary,
+.button-secondary {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    border-radius: $border-radius-button;
+    font-size: $font-size-text;
+    color: $button-color-text; 
+    letter-spacing: 0.1rem;
+    white-space: nowrap;
+    font-weight: 600;
+    transition: transform 0.5s ease; 
+    
+    &:hover {
+        transform: scale(1.1); 
+        box-shadow: 0 0 2rem ; 
+    }
+}
+
+.button-primary {
+    background: $primary-color; 
+}
+
+.button-secondary {
+    background: $secondary-color; 
+}
+
+// Importer les styles pour les formulaires
+label , ::placeholder{
+  font-size: $font-size-text;
+}
+
+.form-control{
+  background-color: $bg-color-2;
+  border: none;
+  border-bottom: calc(0.3vh + 1px) solid $bg-color-nav;
+  border-radius: $border-radius-button;
+}

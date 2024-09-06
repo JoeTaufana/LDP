@@ -9,7 +9,8 @@ Lille du Pacifique est un site internet d'une association qui souhaite promouvoi
 * PHP 8.2
 * Composer
 * Symfony CLI
-* npm
+* nodejs et npm
+* saas
 
 Pour vérifier les pré-requis, vous pous le faire avec la commande suivante :
 

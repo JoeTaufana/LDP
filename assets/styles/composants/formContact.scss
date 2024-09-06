@@ -1,0 +1,19 @@
+// assets/styles/composants/formContact.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+@import '../global';
+
+
+
+.formContact{
+    .form-control{
+        background-color: $bg-color-2;
+        }
+
+    .infosContact{
+        height: 100%;
+    }
+    
+}

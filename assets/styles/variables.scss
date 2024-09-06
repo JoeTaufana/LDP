@@ -1,0 +1,46 @@
+// assets/styles/variables.scss
+
+// Couleurs
+$primary-color: #022859;
+$secondary-color: #007B83;
+$bg-color-nav: #BD8656;
+$bg-color: white;
+$bg-color-2: rgba(242, 194, 153, 0.2);
+$button-color-text: white;
+
+// Polices
+$font-family-title: 'Pacifico', cursive;
+$font-family-text: 'Open Sans', sans-serif;
+
+// Tailles
+$font-size-large: calc(2vw + 20px);
+$font-size-medium: calc(1.3vw + 10px);
+$font-size-text: calc(0.6vw + 10px);
+
+// Marges
+$margin-large: calc(1vw + 10px);
+$margin-text: calc(1vw + 5px);
+$margin-medium: calc(1vw + 5px);
+
+// Espaces
+$space-large: calc(2vw + 10px);
+$space-medium: calc(1vw + 10px);
+$space-small: calc(1vw + 5px);
+
+
+
+// Padding
+$padding-large: calc(1.5vw + 10px);
+$padding-text: calc(1vw + 5px);
+
+
+// Bordure
+$border-radius-button: 2rem 0.2rem;
+$border-radius-carte: 5rem 0.5rem;
+$border-radius-item: calc(1vw + 25px);
+
+// Ombrage
+$shadow-button: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+$shadow-carte: 0.8rem -0.5rem 1rem 0.1rem rgba(0, 0, 0, 0.35);
+
+

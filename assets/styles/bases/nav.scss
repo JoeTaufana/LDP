@@ -1,0 +1,37 @@
+// assets/styles/bases/nav.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+
+.navbar {
+    background-color: $bg-color-nav !important; 
+
+    .navbar-brand {
+        color: $bg-color !important; 
+        font-size: $font-size-text !important;
+        font-family: $font-family-title !important;
+        
+    }
+
+    .nav-item{
+        margin-right: $margin-text;
+    }    
+
+    .nav-link {
+        color: $bg-color !important; 
+
+        &:hover {
+            color: $primary-color !important; 
+    }
+
+    .dropdown-menu {
+        background-color: $bg-color !important; 
+        
+        .dropdown-item{
+        color: $primary-color !important;
+        }
+    }
+}
+}

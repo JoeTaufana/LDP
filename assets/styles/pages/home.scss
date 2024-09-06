@@ -1,0 +1,176 @@
+// assets/styles/pages/home.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+.eroHeader {
+    width: 100%;
+    background: url('/public/img/hibiscus.svg') no-repeat 1% 50%;
+    background-size: calc(10vw + 50px);
+    display: flex;                  
+    flex-direction: column;         
+    align-items: center;            
+    text-align: center;
+
+    @media (max-width: 760px) {
+        .eroHeader_content{
+            background:hidden;
+        } 
+    }
+
+    .eroHeader_img {
+        width: 100%;
+        display: flex;             
+        justify-content: center; 
+        align-items: center;
+    
+        // Styles pour l'image
+        img {
+            width: 100%;          
+            height: 100%;             
+            display: block;           
+        }
+    }
+
+    .eroHeader_content{
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        gap: $space-medium;
+    }
+
+    
+
+    .eroHeader_info{
+        max-width: 780px;    
+
+    // Styles pour le conteneur de boutons
+    .button_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: $space-medium; 
+        margin: $margin-text;       
+    }    
+
+    li{
+        list-style: disc;
+        list-style-position: inside;
+    }
+}
+}
+
+
+.chiffres {
+    background-color: $bg-color-2;
+
+    .row div {
+        border-radius: $border-radius-item;
+        min-height: 200px;
+        padding: $padding-text;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;        
+        
+        div{
+            
+            background-color: $secondary-color;
+            color: white;
+            p {
+            color: white;
+        }
+        }
+        .nombres {
+        font-size: $font-size-large;
+        font-weight: bold;
+    }
+    }
+    
+}
+
+
+
+.derniersArticles {
+    .scroll {
+        ul{
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: $space-small;
+            
+        }
+        @media (max-width: 960px) {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+    
+        li{
+            width: 30%;
+            min-width: 200px;
+            background-color: $bg-color;
+            border-radius: $border-radius-item;
+            max-height: 100%;  
+            text-align: center; 
+            padding: $padding-large;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            flex: 0 0 auto;
+
+    
+        }
+    }
+}
+
+.temoignages {
+    background-color: $bg-color-2;
+
+    .scroll {
+        ul{
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: $space-small;
+            
+        }
+        @media (max-width: 960px) {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+    
+        li{
+            width: 24%;
+            min-width: 180px;
+            background-color: $bg-color;
+            border-radius: $border-radius-item;
+            max-height: 100%;  
+            text-align: center; 
+            padding: $padding-large;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            flex: 0 0 auto;
+
+            p{
+                max-width: 100%;
+                
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+                
+            }
+        }
+    }    
+    
+    .contact{
+        background: url('/public/img/background/backgroundFeuillage.png') no-repeat center;
+        background-size: cover;
+        min-height: 100vh;
+        }
+
+
