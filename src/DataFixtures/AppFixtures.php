@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
                 ->setDescription($faker->text(200))
                 ->setUser($user)
                 ->setAuteur($faker->name)
-                ->setPhoto('article-' . $i . '.jpg')
+                ->setPhoto('img/photos/cagou.webp')
                 ->setDatePublication($faker->dateTimeBetween('-1 year', 'now'));
 
             // Associer l'article à une catégorie aléatoire
@@ -79,6 +79,7 @@ class AppFixtures extends Fixture
                 ->setRdv($faker->dateTimeBetween('-1 year', 'now'))
                 ->setPrix($faker->randomFloat(2, 10, 100))
                 ->setAdresse($faker->address)
+                ->setImage('img/photos/pirogue.webp')
                 ->setCreateur($user);
 
             $manager->persist($evenement);
