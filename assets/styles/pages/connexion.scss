@@ -1,0 +1,17 @@
+// assets/styles/pages/connexion.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+section {
+    background: url('/public/img/background/backgroundFeuillage.png') no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+
+    .text-center{
+        margin-top: $margin-medium;
+        padding-top: $padding-medium;
+        border-top: 2px solid $bg-color-nav;
+    }
+}

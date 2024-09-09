@@ -75,7 +75,8 @@ li {
 // Importer les styles pour les boutons
 
 .button-primary,
-.button-secondary {
+.button-secondary,
+.btn-tertiary {
     display: inline-block;
     padding: 0.8rem 2.5rem;
     border-radius: $border-radius-button;
@@ -100,6 +101,12 @@ li {
     background: $secondary-color; 
 }
 
+.btn-tertiary{
+  background-color: none;
+  border: $secondary-color 1px solid;
+  color: $secondary-color;
+}
+
 // Importer les styles pour les formulaires
 label , ::placeholder{
   font-size: $font-size-text;
@@ -110,4 +117,14 @@ label , ::placeholder{
   border: none;
   border-bottom: calc(0.3vh + 1px) solid $bg-color-nav;
   border-radius: $border-radius-button;
+
+  &:focus{
+    background-color: $bg-color-2;
+    border: none;
+    border-bottom: calc(0.3vh + 1px) solid $bg-color-nav;
+    border-radius: $border-radius-button;
+    box-shadow: none;
+    color: $primary-color;
+  }
 }
+
