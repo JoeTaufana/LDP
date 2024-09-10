@@ -5,38 +5,37 @@
 @import '../mixins';
 @import '../global';
 
+.carteArticle{
 
-.card{
-    // max-width: 100%;
-    // min-width: 180px;
-    border: none !important;
-    border-radius: $border-radius-carte;
-    margin: $margin-medium;
-    box-shadow: $shadow-carte;
+        border: none !important;
+        border-radius: $border-radius-carte-article;
+        margin: $margin-medium;
+        box-shadow: $shadow-carte;
 
 
-    img{
-        // width: 100%;
-        border-radius: 5rem 0 0 0;  
+        img{
+            border-radius: 5rem 0 0 0;  
+        }
+        
+        .card-body{
+            padding: $padding-text;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: $secondary-color;
+
+            .card-text{
+            max-width: 100%;
+        }
+
+            a{
+            font-size: $font-size-text;
+            display: flex;               /* Permet l'alignement horizontal */
+            align-self: flex-end;
+            margin-top: auto;
+            margin-right: $margin-medium;
+            gap: $space-medium;
+            color: $primary-color;
+        }
+        }
     }
-    
-    .card-text{
-        max-width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    a{
-        font-size: $font-size-text;
-        display: flex;               /* Permet l'alignement horizontal */
-        align-items: center;
-        justify-content: center;
-        gap: $space-medium;
-        text-decoration: none;
-        text-decoration: none;
-        color: $primary-color;
-    }
-
-    
-}

@@ -21,6 +21,18 @@ class EvenementsRepository extends ServiceEntityRepository
         parent::__construct($registry, Evenements::class);
     }
 
+    /**
+     * @return Evenements[]
+     */
+    public function derniers()
+    {
+        return $this->createQueryBuilder('a')
+            
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Evenements[] Returns an array of Evenements objects
 //     */

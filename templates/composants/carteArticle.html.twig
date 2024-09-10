@@ -1,15 +1,9 @@
-<div class="card">
-    <img src="https://picsum.photos/id/63/150/150" class="card-img-top" alt="...">
+<div class="carteArticle card">
+    <img src="{{ articles.photo }}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make
-                up the bulk of the card's content.</p>
-            
-                <a href="#" class="">Lire
-                    <span class="material-symbols-outlined">
-                        arrow_right_alt
-                    </span>
-                </a>
-            
+            <h5 class="card-title">{{ articles.titre }}</h5>
+            <p class="card-text">{{ articles.description|u.truncate(100, '...', false)}}</p>
+            <a href="#" class="">Voir plus
+            </a>            
         </div>
     </div>

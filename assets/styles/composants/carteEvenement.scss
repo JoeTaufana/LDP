@@ -1,0 +1,28 @@
+// assets/styles/composants/carteEvenement.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+@import '../global';
+
+.carteEvenement{
+
+    
+        border: none !important;
+        border-radius: 2.5rem 0.5rem;
+        margin: $margin-medium;
+        box-shadow: $shadow-carte;
+    
+        .imgContent, .card-body{
+            padding: $padding-text;
+        }
+
+        .card-body{
+            color: $secondary-color;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+}

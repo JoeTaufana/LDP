@@ -6,7 +6,8 @@
         "core-js": "^3.23.0",
         "css-loader": "^7.1.2",
         "regenerator-runtime": "^0.14.1",
-        "sass": "^1.77.8",
+        "rimraf": "^6.0.1",
+        "sass": "^1.78.0",
         "sass-loader": "^14.2.1",
         "style-loader": "^4.0.0",
         "webpack": "^5.74.0",
@@ -16,6 +17,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "clean": "rimraf public/build",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",

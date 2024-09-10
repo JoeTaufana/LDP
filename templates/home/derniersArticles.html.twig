@@ -1,21 +1,14 @@
 <section class="derniersArticles">
     <div class="container">
         <h2>
-            Nos dernières actions
+            Dernières actualités
         </h2>
-        <div class="scroll">
-        
-            <ul >
-                <li>
-                    {% include 'composants/carteArticle.html.twig'%}
-                </li>
-                <li>
-                    {% include 'composants/carteArticle.html.twig'%}
-                </li>
-                <li>
-                    {% include 'composants/carteArticle.html.twig'%}
-                </li>                
-            </ul>
-        </div>        
+        <div class="articlesPostes row justify-beetween">
+        {% for articles in articles %}
+            <div div class="col-12 col-md-4 mb-4 d-flex ">
+                    {% include 'composants/carteArticle.html.twig' with {'articles': articles}%}
+            </div>
+            
+        {% endfor %}
     </div>
 </section>

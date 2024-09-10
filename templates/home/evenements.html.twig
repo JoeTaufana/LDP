@@ -1,0 +1,16 @@
+<section class="futurEvenement">
+    <div class="container ">
+        <h2>
+            Notre prochaine action
+        </h2>
+        <div class="row justify-content-center">
+        {% for evenements in evenements %}
+
+            <div class="itemEvenement col-12  col-lg-10 ">
+                {% include 'composants/carteEvenement.html.twig' with {'articles': articles} %}
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+</section>

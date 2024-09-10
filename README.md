@@ -25,6 +25,12 @@ npm install
 npm run build
 symfony server:start
 ```
+
+### Ajouter des données de test (fixtures)
+```bash
+symfony console doctrine:fixtures:load
+```
+
 ### Lancer des tests
 
 ```bash
