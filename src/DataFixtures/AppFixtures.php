@@ -76,7 +76,7 @@ class AppFixtures extends Fixture
             $evenement = new Evenements();
             $evenement->setNom($faker->sentence(3))
                 ->setDescription($faker->text(200))
-                ->setRdv($faker->dateTimeBetween('-1 year', 'now'))
+                ->setRdv($faker->dateTimeBetween('now', '+1 year'))
                 ->setPrix($faker->randomFloat(2, 10, 100))
                 ->setAdresse($faker->address)
                 ->setImage('img/photos/pirogue.webp')

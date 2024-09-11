@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenements à venir avec Lille du Pacifique{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="container">
+        <h1>Nos prochains rendez-vous</h1>
+            <div>
+            {% for evenements in evenements %}
+
+                <div class="itemEvenement col-12  col-lg-10 ">
+                    {% include 'composants/carteEvenement.html.twig' with {'evenements': evenements} %}
+                </div>
+
+            {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center">
+                {% do evenements.setPageRange(2) %}
+                {{ knp_pagination_render(evenements, 'base/pagination.html.twig')}}
+            </div>
+        </div>
+    </section>    
+{% endblock %}
