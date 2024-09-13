@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos de L'association Lille du Pacifique{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Découvre Lille du Pacifique</h1>
+    {% include 'association/APropos.html.twig' %}
+    {% include 'association/MotPresident.html.twig' %}
+    {% include 'association/membres.html.twig' %}
+    
+{% endblock %}

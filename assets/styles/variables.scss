@@ -12,7 +12,7 @@ $button-color-text: white;
 $font-family-title: 'Pacifico', cursive;
 $font-family-text: 'Open Sans', sans-serif;
 
-// Tailles
+// Tailles des polices
 $font-size-large: calc(2vw + 20px);
 $font-size-medium: calc(1.3vw + 10px);
 $font-size-text: calc(0.6vw + 10px);
@@ -27,13 +27,10 @@ $space-large: calc(2vw + 10px);
 $space-medium: calc(1vw + 10px);
 $space-small: calc(1vw + 5px);
 
-
-
 // Padding
 $padding-large: calc(1.5vw + 10px);
 $padding-medium: calc(1vw + 5px);
 $padding-text: calc(1vw + 5px);
-
 
 // Bordure
 $border-radius-button: 2rem 0.2rem;
@@ -42,6 +39,10 @@ $border-radius-item: calc(1vw + 25px);
 
 // Ombrage
 $shadow-button: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
-$shadow-carte: 0.8rem -0.5rem 1rem 0.1rem rgba(0, 0, 0, 0.35);
+$shadow-carte: 0.8rem -0.5rem 1rem 0.1rem rgba(0, 0, 0, 0.45);
+
+// Tailles des images en background
+$size-large: calc(15vw + 25px);
+$size-medium: calc(10vw + 20px);
 
 

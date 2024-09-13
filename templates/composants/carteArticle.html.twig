@@ -1,5 +1,5 @@
 <div class="carteArticle card">
-    <img src="{{ articles.photo }}" class="card-img-top" alt="...">
+    <img src="{{ articles.photo }}" class="card-img-top" alt="..." loading="lazy" >
         <div class="card-body">
             <h5 class="card-title">{{ articles.titre }}</h5>
             <p class="card-text">{{ articles.description|u.truncate(100, '...', false)}}</p>

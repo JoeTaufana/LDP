@@ -1,0 +1,30 @@
+@mixin button-styles($bg-color, $text-color, $border-color: transparent) {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    border-radius: $border-radius-button;
+    font-size: $font-size-text;
+    color: $text-color; 
+    letter-spacing: 0.1rem;
+    white-space: nowrap;
+    font-weight: 600;
+    transition: transform 0.5s ease;
+    background: $bg-color;
+    border: 1px solid $border-color;
+
+    &:hover {
+        transform: scale(1.1); 
+        box-shadow: 0 0 2rem; 
+    }
+}
+
+.button-primary {
+    @include button-styles($primary-color, $button-color-text);
+}
+
+.button-secondary {
+    @include button-styles($secondary-color, $button-color-text);
+}
+
+.btn-tertiary {
+    @include button-styles(transparent, $secondary-color, $secondary-color);
+}

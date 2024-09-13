@@ -1,0 +1,52 @@
+// assets/styles/pages/association.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+.Apropos{
+    background-color: $bg-color-2;
+}
+
+
+.motPresident{
+    background: url("/public/img/hibiscus.svg"),
+                url("/public/img/frangipanier.svg");
+    background-repeat: no-repeat, no-repeat;
+    background-size: $size-large, $size-medium; /* Taille des images */
+    background-position: top left, bottom right; /* Position des images */
+
+    img{
+        border-radius: 50%;
+    }
+}
+
+.membres{
+    background: url("/public/img/background/backgroundFeuillage.png") no-repeat center;
+    background-size: cover;
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .contentMembres{
+            margin-top: $margin-large;
+
+            .imgMembre img{
+                border-radius: 2rem 10rem;
+            }
+        
+            .infosMembre{
+                padding: $padding-text;
+            }
+        
+            h5{
+                color: $primary-color;
+            }
+        }
+        }
+    }
+
+    

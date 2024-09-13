@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Membres;
 use App\Entity\User;
 use App\Entity\Articles;
 use App\Entity\Categories;
@@ -91,6 +92,20 @@ class AppFixtures extends Fixture
             // Ajouter l'utilisateur comme participant à chaque événement
             $evenement->addParticipant($user);
             $manager->persist($evenement);
+        }
+
+        // Créations de 6 membres
+        for ($i = 0; $i < 6; $i++){
+            $membre = new Membres();
+            $membre->setNom($faker->lastName)
+                ->setPrenom($faker->firstName)
+                ->setFonction($faker->jobTitle)
+                ->setPhoto('img/photos/portrait.png')
+                ->setCreateur($user);
+
+            $manager->persist($membre);
+        
+            
 
         // Finaliser les changements en base de données
         $manager->flush();

@@ -1,0 +1,21 @@
+<section class="membres">
+    <div class="container">
+        <h2 class="text-center">Notre équipe</h2>
+        <div class="contentMembres col-12 col-lg-10 row gy-5 mx-auto justify-content-center align-items-center">
+            {% for membres in membres %}
+                <div class="carteMembre col-12 col-md-5 d-flex align-items-center ">
+                    <div class="imgMembre col-4 col-md-3">
+                        <img src="{{membres.photo}}" class="img-fluid" alt="..." loading="lazy" >
+                    </div>
+                    <div class="infosMembre col-8 col-md-9">
+                        <h4 class="col-12">{{membres.fonction}}</h4>
+                        <div class="col-9 row">
+                            <h5 class="col-6">{{membres.nom}}</h5>
+                            <h5 class="col-6">{{membres.prenom}}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
