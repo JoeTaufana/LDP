@@ -23,7 +23,7 @@ class ArticlesUnitTest extends TestCase
         ->setTitre('Mon titre')
         ->setDescription('Mon article')
         ->setAuteur('Auteur')
-        ->setPhoto('photo.jpg')
+        ->setFile('photo.jpg')
         ->setDateModification($dateModification);
 
     // Vérifiez les valeurs
@@ -31,7 +31,7 @@ class ArticlesUnitTest extends TestCase
     $this->assertEquals('Mon titre', $articles->getTitre());
     $this->assertEquals('Mon article', $articles->getDescription());
     $this->assertEquals('Auteur', $articles->getAuteur());
-    $this->assertEquals('photo.jpg', $articles->getPhoto());
+    $this->assertEquals('photo.jpg', $articles->getFile());
     $this->assertEquals($dateModification, $articles->getDateModification());
     }
 
@@ -49,7 +49,7 @@ class ArticlesUnitTest extends TestCase
         ->setTitre('Mon titre')
         ->setDescription('Mon article')
         ->setAuteur('Auteur')
-        ->setPhoto('photo.jpg')
+        ->setFile('photo.jpg')
         ->setDateModification($dateModification);
 
     // Créez une date incorrecte pour la comparaison
@@ -61,7 +61,7 @@ class ArticlesUnitTest extends TestCase
     $this->assertNotEquals('False', $articles->getTitre());
     $this->assertNotEquals('False', $articles->getDescription());
     $this->assertNotEquals('False', $articles->getAuteur());
-    $this->assertNotEquals('False', $articles->getPhoto());
+    $this->assertNotEquals('False', $articles->getFile());
     $this->assertNotEquals($falseDateModification, $articles->getDateModification());
     }
 
@@ -73,7 +73,7 @@ class ArticlesUnitTest extends TestCase
         $this->assertEmpty($articles->getTitre());
         $this->assertEmpty($articles->getDescription());
         $this->assertEmpty($articles->getAuteur());
-        $this->assertEmpty($articles->getPhoto());
+        $this->assertEmpty($articles->getFile());
         $this->assertEmpty($articles->getDateModification());
     }
 }

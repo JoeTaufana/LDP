@@ -13,11 +13,15 @@ class CategoriesUnitTest extends TestCase
 
     // Définissez les valeurs sur l'entité categories
     $categories
-        ->setNom('Nom');
+        ->setNom('Nom')
+        ->setDescription('Texte de description')
+        ->setSlug('chudq-ckjfd-xs');
 
     // Vérifiez les valeurs
     $this->assertEquals('Nom', $categories->getNom());
-    }
+    $this->assertEquals('Texte de description', $categories->getDescription());
+    $this->assertEquals('chudq-ckjfd-xs', $categories->getSlug());
+}
 
     public function testIsFalse()
     {
@@ -25,11 +29,15 @@ class CategoriesUnitTest extends TestCase
 
     // Définissez les valeurs sur l'entité categories
     $categories
-        ->setNom('Nom');
+    ->setNom('Nom')
+    ->setDescription('Texte de description')
+    ->setSlug('chudq-ckjfd-xs');
 
 
     // Vérifiez les valeurs incorrectes
     $this->assertNotEquals('False', $categories->getNom());
+    $this->assertNotEquals('False description', $categories->getDescription());
+    $this->assertNotEquals('False-vsb-fre', $categories->getSlug());
     }
 
     public function testIsEmpty()
@@ -37,5 +45,7 @@ class CategoriesUnitTest extends TestCase
         $categories = new Categories();
 
         $this->assertEmpty($categories->getNom());
-    }
+        $this->assertEmpty($categories->getDescription());
+        $this->assertEmpty($categories->getSlug());
+}
 }
