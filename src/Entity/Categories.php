@@ -21,6 +21,12 @@ class Categories
     #[ORM\ManyToMany(targetEntity: Articles::class, mappedBy: 'categorie')]
     private Collection $articles;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -66,6 +72,30 @@ class Categories
         if ($this->articles->removeElement($article)) {
             $article->removeCategorie($this);
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(string $Description): static
+    {
+        $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

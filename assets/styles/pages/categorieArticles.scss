@@ -1,0 +1,45 @@
+// assets/styles/pages/categoriesArticles.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+
+.articlesCategories{
+    min-height: 100vh;
+    background: url("/public/img/background/backgroundSablePalme.png") no-repeat center;
+    background-size: cover;
+
+    .contentCategories{
+        margin-top: $margin-large;
+        padding-top: $padding-large;
+
+        .card{
+            box-shadow: $shadow-carte;
+            border-radius: 2rem;
+        
+            .img{
+                padding: $padding-text;
+            }
+
+            .card-body{
+                padding: $padding-text;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                color: $secondary-color;
+
+                .card-text{
+                max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.listArticles{
+    min-height: 100vh;
+    background: url("/public/img/background/backgroundSablePalme.png") no-repeat center;
+    background-size: cover;
+
+}

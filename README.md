@@ -32,6 +32,11 @@ symfony console doctrine:fixtures:load
 ```
 
 ### Lancer des tests
-
 ```bash
 php bin/phpunit --testdox
+```
+
+### Nettoyer le cache
+```bash
+php bin/console cache:clear
+```

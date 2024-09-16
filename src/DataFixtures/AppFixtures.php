@@ -50,7 +50,9 @@ class AppFixtures extends Fixture
         $categories = [];
         for ($i = 0; $i < 3; $i++) {
             $categorie = new Categories();
-            $categorie->setNom($faker->word());
+            $categorie->setNom($faker->word())
+                    ->setDescription($faker->text(150))
+                    ->setSlug($faker->slug);
             $categories[] = $categorie;
             $manager->persist($categorie);
         }
@@ -61,8 +63,9 @@ class AppFixtures extends Fixture
             $article->setTitre($faker->sentence(3))
                 ->setDescription($faker->text(200))
                 ->setUser($user)
-                ->setAuteur($faker->name)
-                ->setPhoto('img/photos/cagou.webp')
+                ->setAuteur($faker->name)                
+                ->setSlug($faker->slug)
+                ->setFile('img/photos/pirogue.webp')
                 ->setDatePublication($faker->dateTimeBetween('-1 year', 'now'));
 
             // Associer l'article à une catégorie aléatoire
