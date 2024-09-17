@@ -17,10 +17,14 @@
 
     .nav-item{
         margin-right: $margin-text;
+
+        .active{
+            color: $primary-color;
+        }
     }    
 
     .nav-link {
-        color: $bg-color !important; 
+        color: $bg-color !important;
 
         &:hover {
             color: $primary-color !important; 
@@ -33,5 +37,7 @@
         color: $primary-color !important;
         }
     }
+
+    
 }
 }

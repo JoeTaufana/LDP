@@ -41,14 +41,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Articles::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $articles;
 
-    #[ORM\OneToMany(targetEntity: Evenements::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $evenements;
+    #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $evenement;
 
-    #[ORM\ManyToMany(targetEntity: Evenements::class, mappedBy: 'participants')]
-    private Collection $participations;
+    #[ORM\ManyToMany(targetEntity: Evenement::class, mappedBy: 'participant')]
+    private Collection $participation;
 
     #[ORM\OneToMany(targetEntity: Membre::class, mappedBy: 'createur')]
-    private Collection $Membre;
+    private Collection $membre;
 
     #[ORM\OneToMany(targetEntity: Contacts::class, mappedBy: 'createur')]
     private Collection $contacts; // Événements auxquels l'utilisateur participe
@@ -56,9 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->articles = new ArrayCollection();
-        $this->evenements = new ArrayCollection();
-        $this->participations = new ArrayCollection();
-        $this->Membre = new ArrayCollection();
+        $this->evenement = new ArrayCollection();
+        $this->participation = new ArrayCollection();
+        $this->membre = new ArrayCollection();
         $this->contacts = new ArrayCollection();
     }
 
@@ -218,26 +218,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Evenements>
+     * @return Collection<int, Evenement>
      */
-    public function getEvenements(): Collection
+    public function getEvenement(): Collection
     {
-        return $this->evenements;
+        return $this->evenement;
     }
 
-    public function addEvenement(Evenements $evenement): static
+    public function addEvenement(Evenement $evenement): static
     {
-        if (!$this->evenements->contains($evenement)) {
-            $this->evenements->add($evenement);
+        if (!$this->evenement->contains($evenement)) {
+            $this->evenement->add($evenement);
             $evenement->setCreateur($this);
         }
 
         return $this;
     }
 
-    public function removeEvenement(Evenements $evenement): static
+    public function removeEvenement(Evenement $evenement): static
     {
-        if ($this->evenements->removeElement($evenement)) {
+        if ($this->evenement->removeElement($evenement)) {
             // set the owning side to null (unless already changed)
             if ($evenement->getCreateur() === $this) {
                 $evenement->setCreateur(null);
@@ -248,26 +248,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Evenements>
+     * @return Collection<int, Evenement>
      */
     public function getParticipations(): Collection
     {
-        return $this->participations;
+        return $this->participation;
     }
 
-    public function addParticipation(Evenements $evenement): static
+    public function addParticipation(Evenement $evenement): static
     {
-        if (!$this->participations->contains($evenement)) {
-            $this->participations->add($evenement);
+        if (!$this->participation->contains($evenement)) {
+            $this->participation->add($evenement);
             $evenement->addParticipant($this); // Assure que la relation bidirectionnelle est maintenue
         }
 
         return $this;
     }
 
-    public function removeParticipation(Evenements $evenement): static
+    public function removeParticipation(Evenement $evenement): static
     {
-        if ($this->participations->removeElement($evenement)) {
+        if ($this->participation->removeElement($evenement)) {
             // Assure que la relation bidirectionnelle est maintenue
             $evenement->removeParticipant($this);
         }
@@ -285,8 +285,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addMembre(Membre $membre): static
     {
-        if (!$this->Membre->contains($membre)) {
-            $this->Membre->add($membre);
+        if (!$this->membre->contains($membre)) {
+            $this->membre->add($membre);
             $membre->setCreateur($this);
         }
 
@@ -295,7 +295,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeMembre(Membre $membre): static
     {
-        if ($this->Membre->removeElement($membre)) {
+        if ($this->membre->removeElement($membre)) {
             // set the owning side to null (unless already changed)
             if ($membre->getCreateur() === $this) {
                 $membre->setCreateur(null);

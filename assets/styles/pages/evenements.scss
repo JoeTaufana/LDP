@@ -1,0 +1,13 @@
+// assets/styles/pages/evenements.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+.agenda{
+    background-color: $bg-color-2;
+}
+
+.evenementDetails{
+    min-height: 100vh;
+}

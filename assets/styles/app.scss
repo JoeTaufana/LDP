@@ -16,10 +16,12 @@
 // Importations des bases
 @import 'bases/nav';
 @import 'bases/footer';
+@import 'bases/pagination';
 
 // Importations des pages
 @import 'pages/home';
 @import 'pages/connexion';
 @import 'pages/association';
 @import 'pages/categorieArticles.scss';
+@import 'pages/evenements.scss';
 

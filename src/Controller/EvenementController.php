@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\EvenementsRepository;
+use App\Entity\Evenement;
+use App\Repository\EvenementRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +14,11 @@ class EvenementController extends AbstractController
 {
     #[Route('/agenda', name: 'agenda')]
     public function agenda(
-        EvenementsRepository $evenementsRepository,
+        EvenementRepository $evenementRepository,
         PaginatorInterface $paginator,
         Request $request
         ): Response {
-            $data = $evenementsRepository ->findAll();
+            $data = $evenementRepository ->findAllOrderByDate();
 
             $evenements = $paginator->paginate(
             $data,
@@ -27,6 +28,22 @@ class EvenementController extends AbstractController
             
         return $this->render('evenement/agenda.html.twig', [
             'evenements' => $evenements,
+        ]);
+    }
+
+    #[Route('/agenda/{slug}', name: 'evenementsDetails')]
+    public function details(
+        string $slug,
+        EvenementRepository $evenementRepository
+    ): Response {
+        $evenement = $evenementRepository->findOneBySlug($slug);
+
+        if (!$evenement) {
+            throw $this->createNotFoundException('Événement non trouvé');
+        }
+
+        return $this->render('evenement/details.html.twig', [
+            'evenement' => $evenement,
         ]);
     }
 }

@@ -38,8 +38,10 @@ h1, h2{
   font-family: $font-family-title;
   color: $secondary-color;
   font-size: $font-size-large;
-  margin: $margin-large 0;
+  margin: calc(1vw + 10px) 0 calc(3vw + 20px) 0;
 }
+
+
 
 h3, h4{
   font-family: $font-family-title;

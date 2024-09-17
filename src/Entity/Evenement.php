@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\EvenementsRepository;
+use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EvenementsRepository::class)]
-class Evenements
+#[ORM\Entity(repositoryClass: EvenementRepository::class)]
+class Evenement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,19 +31,22 @@ class Evenements
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    #[ORM\ManyToOne(inversedBy: 'evenements')]
+    #[ORM\ManyToOne(inversedBy: 'evenement')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $createur = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'participations')]
-    #[ORM\JoinTable(name: 'user_evenements')]
-    private Collection $participants;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'participation')]
+    #[ORM\JoinTable(name: 'user_evenement')]
+    private Collection $participant;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null; // Utilisateurs participant à l'événement
+    private ?string $file = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null; 
 
     public function __construct() {
-        $this->participants = new ArrayCollection();
+        $this->participant = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -127,13 +130,13 @@ class Evenements
      */
     public function getParticipants(): Collection
     {
-        return $this->participants;
+        return $this->participant;
     }
 
     public function addParticipant(User $user): static
     {
-        if (!$this->participants->contains($user)) {
-            $this->participants->add($user);
+        if (!$this->participant->contains($user)) {
+            $this->participant->add($user);
             $user->addParticipation($this);
         }
 
@@ -141,21 +144,33 @@ class Evenements
     }
     public function removeParticipant(User $user): static
     {
-        if ($this->participants->removeElement($user)) {
+        if ($this->participant->removeElement($user)) {
             $user->removeParticipation($this);
         }
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getFile(): ?string
     {
-        return $this->image;
+        return $this->file;
     }
 
-    public function setImage(?string $image): static
+    public function setFile(?string $file): static
     {
-        $this->image = $image;
+        $this->file = $file;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

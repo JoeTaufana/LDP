@@ -1,16 +1,45 @@
 <section class="futurEvenement">
     <div class="container ">
         <h2>
-            Notre prochaine action
+            Nos prochains rendez-vous
         </h2>
-        <div class="row justify-content-center">
-        {% for evenements in evenements %}
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+        {% for evenement in evenement %}
+            <div class="carteEvenement card col-12 col-lg-10 " style="max-width: 1330px;">
+            <div class="contentEvenement col-12 row g-0">
+                <!-- Image à gauche avec 4 colonnes -->
+                <div class="imgContent col-12 col-md-4 d-flex justify-content-center align-items-center">
+                <img src="{{evenement.file}}" class="img-fluid rounded-start" alt="..." loading="lazy" >
+                </div>
 
-            <div class="itemEvenement col-12  col-lg-10 ">
-                {% include 'composants/carteEvenement.html.twig' with {'articles': articles} %}
+                <!-- Contenu à droite avec 8 colonnes -->
+                <div class="col-12 col-md-8 row">
+
+                <!-- Colonne pour le nom, description et date -->
+                <div class="card-body col- 12 col-md-8 d-flex flex-column justify-content-between">
+                    <h5 class="card-title">{{ evenement.nom }}</h5>
+                    <p class="card-text">{{ evenement.description|u.truncate(200, '...', false) }}</p>
+                    <div class="col-12 row">
+                        <p class="col-6 card-text">{{ evenement.rdv|date('d/m/y') }}</small></p>
+                        {# <p class="col-6">{{ evenement.prix }} €</p> #}
+                    </div>
+                </div>
+
+                    <!-- Colonne pour l'adresse et le bouton -->
+                    
+                <div class="card-body col-4 d-flex flex-column justify-content-between ">
+                    <h5 class="card-title col-12 text-center">Viens t'inscrire </h5>
+                    <div class="d-flex justify-content-end mt-auto">
+                    <a href="{{ path('evenementsDetails', {'slug': evenement.slug}) }}" class="button-primary">Voir le détail</a>
+                    </div>
+                </div>
+                    
+                </div>
             </div>
-
+            </div>
         {% endfor %}
+
+        <a href="{{ path('agenda') }}" class="button-primary">Voir tous nos rdv</a>
         </div>
     </div>
 </section>

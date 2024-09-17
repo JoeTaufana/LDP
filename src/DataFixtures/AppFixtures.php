@@ -6,7 +6,7 @@ use App\Entity\Membre;
 use App\Entity\User;
 use App\Entity\Articles;
 use App\Entity\Categories;
-use App\Entity\Evenements;
+use App\Entity\Evenement;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -77,13 +77,14 @@ class AppFixtures extends Fixture
 
         // Création de 5 événements
         for ($i = 0; $i < 5; $i++) {
-            $evenement = new Evenements();
+            $evenement = new Evenement();
             $evenement->setNom($faker->sentence(3))
                 ->setDescription($faker->text(200))
                 ->setRdv($faker->dateTimeBetween('now', '+1 year'))
                 ->setPrix($faker->randomFloat(2, 10, 100))
                 ->setAdresse($faker->address)
-                ->setImage('img/photos/pirogue.webp')
+                ->setFile('img/photos/pirogue.webp')
+                ->setSlug($faker->slug)
                 ->setCreateur($user);
 
             $manager->persist($evenement);

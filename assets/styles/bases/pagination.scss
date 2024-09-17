@@ -1,0 +1,22 @@
+// assets/styles/bases/pagination.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+.pagination{
+    .page-item{
+        
+
+        .page-link{
+            color: $primary-color;
+        }
+    }
+
+    .active > .page-link{
+        background-color: $primary-color;
+        color: $button-color-text;
+        border-color: $primary-color;
+    }
+    
+}

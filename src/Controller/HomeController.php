@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ArticlesRepository;
-use App\Repository\EvenementsRepository;
+use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,11 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(ArticlesRepository $articlesRepository, EvenementsRepository $evenementsRepository): Response
+    public function index(ArticlesRepository $articlesRepository, EvenementRepository $evenementRepository): Response
     {
         return $this->render('home/index.html.twig', [
             'articles' => $articlesRepository ->troisDerniers(),
-            'evenements' => $evenementsRepository ->derniers(),
+            'evenement' => $evenementRepository ->derniers(),
         ]);
     }
 }

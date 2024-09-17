@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ evenement.nom }}{% endblock %}
+
+{% block body %}
+    <section class="evenementDetails">
+        <div class="container">
+        <h1 class="text-center">{{ evenement.nom }}</h1>
+            <div class="containerEvenementDetails col-12 d-flex justify-content-around">
+                <div class="contentEvenementsDetails col-lg-6 d-flex flex-column justify-content-evenly">
+                    <p>{{ evenement.description}}</p>
+                    <p class="col-12">Date : <b>{{ evenement.rdv|date('d/m/y') }}</b></p>                    
+                    <p class="col-12">Lieu de rdv :<br><b>{{evenement.adresse}}</b></p>
+                    <p class="col-12">Montant de la participation : <b>{{ evenement.prix }}€</b></p>
+                </div>
+                <div class="imgEvenementsDetails col-lg-4 ">
+                    <img src="{{asset(evenement.file)}}" class="col-12" alt="..." loading="lazy" >
+                </div>
+            </div>
+        </div>
+    </section>    
+{% endblock %}
