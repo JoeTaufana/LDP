@@ -10,13 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class AssociationController extends AbstractController
 {
     #[Route('/association', name: 'association')]
-    public function Membre(
-        MembreRepository $MembreRepository
+    public function membre(
+        MembreRepository $membreRepository
     ): Response {
-        $Membre = $MembreRepository ->findAll();
+        $membres = $membreRepository ->findAll();
 
         return $this->render('association/index.html.twig', [
-            'Membre' => $Membre,
+            'membre' => $membres,
         ]);
     }
 }

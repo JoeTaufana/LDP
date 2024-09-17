@@ -22,11 +22,11 @@ class Membre
     #[ORM\Column(length: 255)]
     private ?string $fonction = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Membre')]
+    #[ORM\ManyToOne(inversedBy: 'membre')]
     private ?User $createur = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
+    private ?string $file = null;
 
     public function getId(): ?int
     {
@@ -81,14 +81,14 @@ class Membre
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getFile(): ?string
     {
-        return $this->photo;
+        return $this->file;
     }
 
-    public function setPhoto(?string $photo): static
+    public function setFile(?string $file): static
     {
-        $this->photo = $photo;
+        $this->file = $file;
 
         return $this;
     }
