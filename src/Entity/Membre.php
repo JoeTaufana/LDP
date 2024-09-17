@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\MembresRepository;
+use App\Repository\MembreRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MembresRepository::class)]
-class Membres
+#[ORM\Entity(repositoryClass: MembreRepository::class)]
+class Membre
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,7 +22,7 @@ class Membres
     #[ORM\Column(length: 255)]
     private ?string $fonction = null;
 
-    #[ORM\ManyToOne(inversedBy: 'membres')]
+    #[ORM\ManyToOne(inversedBy: 'Membre')]
     private ?User $createur = null;
 
     #[ORM\Column(length: 255, nullable: true)]

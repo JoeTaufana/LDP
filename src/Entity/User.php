@@ -47,8 +47,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Evenements::class, mappedBy: 'participants')]
     private Collection $participations;
 
-    #[ORM\OneToMany(targetEntity: Membres::class, mappedBy: 'createur')]
-    private Collection $membres;
+    #[ORM\OneToMany(targetEntity: Membre::class, mappedBy: 'createur')]
+    private Collection $Membre;
 
     #[ORM\OneToMany(targetEntity: Contacts::class, mappedBy: 'createur')]
     private Collection $contacts; // Événements auxquels l'utilisateur participe
@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->articles = new ArrayCollection();
         $this->evenements = new ArrayCollection();
         $this->participations = new ArrayCollection();
-        $this->membres = new ArrayCollection();
+        $this->Membre = new ArrayCollection();
         $this->contacts = new ArrayCollection();
     }
 
@@ -276,26 +276,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Membres>
+     * @return Collection<int, Membre>
      */
-    public function getMembres(): Collection
+    public function getMembre(): Collection
     {
-        return $this->membres;
+        return $this->Membre;
     }
 
-    public function addMembre(Membres $membre): static
+    public function addMembre(Membre $membre): static
     {
-        if (!$this->membres->contains($membre)) {
-            $this->membres->add($membre);
+        if (!$this->Membre->contains($membre)) {
+            $this->Membre->add($membre);
             $membre->setCreateur($this);
         }
 
         return $this;
     }
 
-    public function removeMembre(Membres $membre): static
+    public function removeMembre(Membre $membre): static
     {
-        if ($this->membres->removeElement($membre)) {
+        if ($this->Membre->removeElement($membre)) {
             // set the owning side to null (unless already changed)
             if ($membre->getCreateur() === $this) {
                 $membre->setCreateur(null);

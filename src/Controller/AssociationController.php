@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\MembresRepository;
+use App\Repository\MembreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,13 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class AssociationController extends AbstractController
 {
     #[Route('/association', name: 'association')]
-    public function membres(
-        MembresRepository $membresRepository
+    public function Membre(
+        MembreRepository $MembreRepository
     ): Response {
-        $membres = $membresRepository ->findAll();
+        $Membre = $MembreRepository ->findAll();
 
         return $this->render('association/index.html.twig', [
-            'membres' => $membres,
+            'Membre' => $Membre,
         ]);
     }
 }
