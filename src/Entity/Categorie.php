@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriesRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoriesRepository::class)]
-class Categories
+#[ORM\Entity(repositoryClass: CategorieRepository::class)]
+class Categorie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,11 +18,11 @@ class Categories
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\ManyToMany(targetEntity: Articles::class, mappedBy: 'categorie')]
+    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')]
     private Collection $articles;
 
     #[ORM\Column(length: 255)]
-    private ?string $Description = null;
+    private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -50,14 +50,14 @@ class Categories
     }
 
     /**
-     * @return Collection<int, Articles>
+     * @return Collection<int, Article>
      */
-    public function getArticles(): Collection
+    public function getArticle(): Collection
     {
         return $this->articles;
     }
 
-    public function addArticle(Articles $article): static
+    public function addArticle(Article $article): static
     {
         if (!$this->articles->contains($article)) {
             $this->articles->add($article);
@@ -67,7 +67,7 @@ class Categories
         return $this;
     }
 
-    public function removeArticle(Articles $article): static
+    public function removeArticle(Article $article): static
     {
         if ($this->articles->removeElement($article)) {
             $article->removeCategorie($this);
@@ -78,12 +78,12 @@ class Categories
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(string $Description): static
+    public function setDescription(string $description): static
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }

@@ -3,20 +3,20 @@
 {% block title %}L'actualité avec Lille du Pacifique{% endblock %}
 
 {% block body %}
-    <section class="articlesCategories">
+    <section class="articlecategorie">
         <div class="container">
         <h1 class="text-center">L'actualité de Lille du Pacifique</h1>
-        <div class="contentCategories row justify-content-around aligns-item-center">
-            {% for categories in categories %}
-                {% set img = categories.articles|last %}
+        <div class="contentcategorie row justify-content-around aligns-item-center">
+            {% for categorie in categories %}
+                {% set img = categorie.article|last %}
                 <div class="card col-10 col-md-6 col-lg-3">
-                    <a href="{{ path('actualitesCategorie', {'slug': categories.slug})}}">
+                    <a href="{{ path('actualitesCategorie', {'slug': categorie.slug})}}">
                         <div class="img">
                             <img src="{{ asset(img.file) }}" class=" mx-auto d-block img-fluid" alt="..." loading="lazy">
                         </div>                        
                         <div class="card-body">
-                            <h5 class="card-title">{{ categories.nom}}</h5>
-                            <p class="card-text">{{ categories.description }}</p>
+                            <h5 class="card-title">{{ categorie.nom}}</h5>
+                            <p class="card-text">{{ categorie.description }}</p>
                             {# <a href="#" class="btn btn-primary">Go somewhere</a> #}
                         </div>
                     </a>

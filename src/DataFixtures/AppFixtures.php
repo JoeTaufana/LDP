@@ -4,8 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Membre;
 use App\Entity\User;
-use App\Entity\Articles;
-use App\Entity\Categories;
+use App\Entity\Article;
+use App\Entity\Categorie;
 use App\Entity\Evenement;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -46,10 +46,10 @@ class AppFixtures extends Fixture
          // Persister l'utilisateur dans l'ObjectManager
          $manager->persist($user);
 
-        // Création de 3 catégories d'articles
+        // Création de 3 catégories d'article
         $categories = [];
         for ($i = 0; $i < 3; $i++) {
-            $categorie = new Categories();
+            $categorie = new Categorie();
             $categorie->setNom($faker->word())
                     ->setDescription($faker->text(150))
                     ->setSlug($faker->slug);
@@ -57,11 +57,11 @@ class AppFixtures extends Fixture
             $manager->persist($categorie);
         }
 
-         // Création de 10 articles
-         for ($i = 0; $i < 10; $i++) {
-            $article = new Articles();
+         // Création de 15 articles
+         for ($i = 0; $i < 15; $i++) {
+            $article = new Article();
             $article->setTitre($faker->sentence(3))
-                ->setDescription($faker->text(200))
+                ->setDescription($faker->text(2500))
                 ->setUser($user)
                 ->setAuteur($faker->name)                
                 ->setSlug($faker->slug)

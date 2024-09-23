@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ articles.titre }}{% endblock %}
+
+{% block body %}
+    <section class="articleSection">
+        <div class="container">
+            <h1 class="text-center">{{ articles.titre }}</h1>
+            <div class="articleBlock">
+            
+            {# Partie gauche de l'article #}
+                <article class="articleContent">
+                    <a href="#" class="article-back-link">< retour </a>
+                    <div class="articleDetails ">
+                        <div class="">
+                            <img src="{{ asset(articles.file) }}" class="col-12" alt="">
+                        </div>
+                        <div class="">
+                            <small>Description de la photo </small>
+                            <p></p>
+                        </div >
+                        <h2 class="text-justify">Sous-Titre</h2>
+                        <p class="articleDescription text-justify">{{ articles.description }}</p>
+                        <p class="articleMeta">Publié le : <b>{{articles.datePublication|date('d/m/y')}}</b> par <b>{{ articles.auteur }}</b></p>
+                    </div>
+                </article>
+
+        
+
+            {# Partie droite  #}
+                <div class="articleSlider">
+                {% for article in listeArticles %}
+                    <article class="carteArticle card  ">
+                        <img src={{ asset(article.file) }} class="card-img-top" alt="..." loading="lazy" >
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.titre }}</h5>
+                            <p class="card-text">{{ article.description|u.truncate(100, '...', false)}}</p>
+                            <a href="{{ path('articlesDetails', {'slug': article.slug}) }}" class="">Voir plus</a>            
+                        </div>
+                    </article>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>    
+{% endblock %}

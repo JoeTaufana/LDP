@@ -38,8 +38,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $telephone = null;
 
-    #[ORM\OneToMany(targetEntity: Articles::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $articles;
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $article;
 
     #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $evenement;
@@ -55,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->article = new ArrayCollection();
         $this->evenement = new ArrayCollection();
         $this->participation = new ArrayCollection();
         $this->membre = new ArrayCollection();
@@ -188,26 +188,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Articles>
+     * @return Collection<int, Article>
      */
-    public function getArticles(): Collection
+    public function getArticle(): Collection
     {
-        return $this->articles;
+        return $this->article;
     }
 
-    public function addArticle(Articles $article): static
+    public function addArticle(Article $article): static
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
+        if (!$this->article->contains($article)) {
+            $this->article->add($article);
             $article->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeArticle(Articles $article): static
+    public function removeArticle(Article $article): static
     {
-        if ($this->articles->removeElement($article)) {
+        if ($this->article->removeElement($article)) {
             // set the owning side to null (unless already changed)
             if ($article->getUser() === $this) {
                 $article->setUser(null);

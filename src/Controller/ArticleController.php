@@ -2,52 +2,56 @@
 
 namespace App\Controller;
 
-use App\Repository\ArticlesRepository;
-use App\Repository\CategoriesRepository;
+use App\Repository\ArticleRepository;
+use App\Repository\CategorieRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticlesController extends AbstractController
+class ArticleController extends AbstractController
 {
     #[Route('/actualites', name: 'actualites')]
-        public function index(CategoriesRepository $categoriesRepository): Response
+        public function index(CategorieRepository $categorieRepository): Response
         {
             return $this->render('articles/index.html.twig', [
-                'categories' => $categoriesRepository ->findAll(),
+                'categories' => $categorieRepository ->findAll(),
             ]);
         }
 
     #[Route('/actualites/{slug}', name: 'actualitesCategorie')]
-    public function categorie(string $slug, CategoriesRepository $categoriesRepository, PaginatorInterface $paginator, Request $request): Response
+    public function categorie(
+        string $slug, 
+        CategorieRepository $categorieRepository, 
+        PaginatorInterface $paginator, 
+        Request $request): Response
     {
         // Recherche la catégorie avec son slug et charge aussi ses articles
-        $categories = $categoriesRepository->findOneBySlugWithArticles($slug);
+        $categorie = $categorieRepository->findOneBySlugWithArticles($slug);
 
-        if (!$categories) {
+        if (!$categorie) {
             throw $this->createNotFoundException('Catégorie non trouvée');
         }
 
         // Appelle une méthode privée pour gérer la pagination des articles de la catégorie
-        $articles = $this->paginateArticles($categories->getArticles(), $paginator, $request);
+        $articles = $this->paginateArticles($categorie->getArticle(), $paginator, $request);
 
         return $this->render('articles/articles.html.twig', [
-            'categories' => $categories,
+            'categories' => $categorie,
             'articles' => $articles,
         ]); 
             }
 
     #[Route('/articles', name: 'articles')]
-        public function articles(
-        ArticlesRepository $articlesRepository,
+        public function article(
+        ArticleRepository $articleRepository,
         PaginatorInterface $paginator,
         Request $request
         ): Response {
         
         // Récupère tous les articles de la base de données
-        $data = $articlesRepository ->findAll();
+        $data = $articleRepository ->findAll();
 
         // Appelle la même méthode privée pour paginer les articles récupérés
         $articles = $this->paginateArticles($data, $paginator, $request);
@@ -68,6 +72,24 @@ class ArticlesController extends AbstractController
         );
     }
 
+    #[Route('/articles/{slug}', name: 'articlesDetails')]
+        public function details(
+        ArticleRepository $articleRepository,
+        string $slug
+        ): Response {
+            $article = $articleRepository->findOneBySlug($slug);
+
+            if (!$article) {
+                throw $this->createNotFoundException('Article non trouvé');
+            }
+
+            $listeArticles = $articleRepository->findAllWithoutCurrent($slug);
+
+        return $this->render('articles/details.html.twig', [
+            'articles' => $article,
+            'listeArticles' => $listeArticles,
+        ]);
+    }
 
 
     
