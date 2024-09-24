@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Evenement;
+use App\Entity\Coordonnee;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -34,9 +35,9 @@ class AppFixtures extends Fixture
         // Génération des données pour l'utilisateur
         $user->setNom($faker->lastName)
             ->setPrenom($faker->firstName)
-            ->setEmail('user@test.com');
+            ->setEmail('user@test.com')            
+            ->setRoles(['ROLE_GESTIONNAIRE']);
             
-            // ->setRoles(['ROLE_ADMIN']);
             $hashedPassword = $this->passwordHasher->hashPassword(
                 $user,
                 'password123'
@@ -109,11 +110,22 @@ class AppFixtures extends Fixture
 
             $manager->persist($membre);
         
-            
+        // Créations de 5 coordonnees
+        for ($i = 0; $i < 5; $i++){
+            $coordonnee = new Coordonnee();
+            $coordonnee->setNom($faker->lastName)
+                ->setPrenom($faker->firstName)
+                ->setTelephone($faker->phoneNumber)
+                ->setDescription($faker->text(100))
+                ->setEmail($faker->email)
+                ->setCreateur($user);
+
+            $manager->persist($coordonnee);
 
         // Finaliser les changements en base de données
         $manager->flush();
         }
 
     }
+}
 }

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactsRepository;
+use App\Repository\CoordonneeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ContactsRepository::class)]
-class Contacts
+#[ORM\Entity(repositoryClass: CoordonneeRepository::class)]
+class Coordonnee
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,7 +28,7 @@ class Contacts
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    #[ORM\ManyToOne(inversedBy: 'coordonnee')]
     private ?User $createur = null;
 
     public function getId(): ?int

@@ -2,32 +2,57 @@
     <div class="container justify-content-center py-3">
         <h2 class="text-center" data-aos="fade-right">Contacte nous!</h2>
         <div class="container row justify-content-evenly ">
-            <form action="" class="row col-lg-5 gy-5 px-5">
-            
-                <div class="col-md-6">
-                    <label for="nom" class="form-label">Name</label>
-                    <input type="text" class="form-control form-control-lg" id="nom" placeholder="John Doe">
+            <section class="ContainerformContact col-lg-5 gy-5 px-5">
+                {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {% if formContact.vars.errors is not empty %}
+                <div class="alert alert-danger">
+                    {{ form_errors(formContact) }}
                 </div>
-                <div class="col-md-6">
-                    <label for="prenom" class="form-label">Prénom</label>
-                    <input type="text" class="form-control form-control-lg" id="prenom" placeholder="John Doe">
+                {% endif %}
+
+                <div class="col-md-6 mt-3">
+                    {{ form_label(formContact.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(formContact.nom, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Doe'}}) }}
+                    {{ form_errors(formContact.nom) }}
                 </div>
-                <div class="">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control form-control-lg" id="email" placeholder="name@example.com">
+
+                <div class="col-md-6 mt-3">
+                    {{ form_label(formContact.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(formContact.prenom, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'John'}}) }}
+                    {{ form_errors(formContact.prenom) }}
                 </div>
-                <div class="">
-                    <label for="Objet" class="form-label">Objet</label>
-                    <input type="text" class="form-control form-control-lg" id="Objet" placeholder="John Doe">
+
+                <div class="mt-3">
+                    {{ form_label(formContact.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(formContact.email, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'name@example.com'}}) }}
+                    {{ form_errors(formContact.email) }}
                 </div>
-                <div class="">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control form-control-lg" id="message" rows="8" ></textarea>
+
+                <div class="mt-3">
+                    {{ form_label(formContact.objet, 'Objet', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(formContact.objet, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Objet'}}) }}
+                    {{ form_errors(formContact.objet) }}
                 </div>
-                <div class="d-flex justify-content-end ">
-                    <button type="submit" class="button-secondary">Envoyer</button>
+
+                <div class="mt-3">
+                    {{ form_label(formContact.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(formContact.message, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Message', 'rows': 8}}) }}
+                    {{ form_errors(formContact.message) }}
                 </div>
-            </form>
+
+                <div class="d-flex justify-content-end mt-5">
+                    {{ form_row(formContact.envoyer, {'attr': {'class': 'btn button-primary'}}) }}
+                </div>
+
+                {{ form_end(formContact) }}
+            </section>
             <div class=" row col-lg-5 gy-5 px-5">
                 <h6 class="text-center">Association Lille du Pacifique<br />
                     10 rue Tralala<br />

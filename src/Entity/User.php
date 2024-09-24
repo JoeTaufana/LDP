@@ -50,8 +50,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Membre::class, mappedBy: 'createur')]
     private Collection $membre;
 
-    #[ORM\OneToMany(targetEntity: Contacts::class, mappedBy: 'createur')]
-    private Collection $contacts; // Événements auxquels l'utilisateur participe
+    #[ORM\OneToMany(targetEntity: Coordonnee::class, mappedBy: 'createur')]
+    private Collection $coordonnee; // Événements auxquels l'utilisateur participe
 
     public function __construct()
     {
@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->evenement = new ArrayCollection();
         $this->participation = new ArrayCollection();
         $this->membre = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
+        $this->coordonnee = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -306,26 +306,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Contacts>
+     * @return Collection<int, Coordonnee>
      */
-    public function getContacts(): Collection
+    public function getCoordonnee(): Collection
     {
-        return $this->contacts;
+        return $this->coordonnee;
     }
 
-    public function addContact(Contacts $contact): static
+    public function addContact(Coordonnee $contact): static
     {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts->add($contact);
+        if (!$this->coordonnee->contains($contact)) {
+            $this->coordonnee->add($contact);
             $contact->setCreateur($this);
         }
 
         return $this;
     }
 
-    public function removeContact(Contacts $contact): static
+    public function removeContact(Coordonnee $contact): static
     {
-        if ($this->contacts->removeElement($contact)) {
+        if ($this->coordonnee->removeElement($contact)) {
             // set the owning side to null (unless already changed)
             if ($contact->getCreateur() === $this) {
                 $contact->setCreateur(null);
