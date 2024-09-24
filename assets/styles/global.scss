@@ -38,7 +38,14 @@ h1, h2{
   font-family: $font-family-title;
   color: $secondary-color;
   font-size: $font-size-large;
+}
+
+h1{
   margin: calc(1vw + 10px) 0 calc(3vw + 20px) 0;
+}
+
+h2{
+  margin: calc(1vw + 10px) 0 calc(1vw + 15px) 0;
 }
 
 
@@ -72,6 +79,11 @@ p {
 
 a{
   text-decoration: none;
+}
+
+.article-back-link{
+  color: $primary-color;
+  font-size: $font-size-text;
 }
 
 // Importer les styles pour les listes

@@ -1,0 +1,67 @@
+// assets/styles/pages/articlesDetails.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+.articleSection{
+
+    background-color: $bg-color-2;
+
+    .articleBlock{
+
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .articleContent{
+            width: 70%;
+            padding-right: $padding-large;
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+        
+                .articleDetails{
+                    width: 90%;
+
+                    .articleDescription{
+                        text-align: justify;
+                    }
+
+                    .articleMeta{
+                        padding-top: $padding-text;
+                        text-align: right;
+                    }
+                }
+            
+        }
+
+        .articleSlider{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            gap: $space-small;
+
+            article{
+                width: 80%;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 992px){
+    .articleSection{
+        .articleContent{
+            border-right: none !important;
+            width: 100% !important;
+            padding-right: none !important;
+
+            .articleDetails{
+                width: 100% !important;
+        }
+    }
+        .articleSlider{
+            display: none !important;
+        }
+    }
+}

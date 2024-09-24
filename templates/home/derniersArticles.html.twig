@@ -4,9 +4,9 @@
             Dernières actualités
         </h2>
         <div class="articlesPostes row justify-beetween" >
-        {% for articles in articles %}
+        {% for article in article %}
             <div div class="col-12 col-md-4 mb-4 d-flex " data-aos="fade-up" data-aos-duration = "2400" data-aos-offset= "50">
-                    {% include 'composants/carteArticle.html.twig' with {'articles': articles}%}
+                    {% include 'composants/carteArticle.html.twig' with {'articles': article}%}
             </div>
             
         {% endfor %}

@@ -2,17 +2,17 @@
 
 namespace App\Twig;
 
-use App\Repository\CategoriesRepository;
+use App\Repository\CategorieRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
-    private $categoriesRepository;
+    private $categorieRepository;
 
-    public function __construct(CategoriesRepository $categoriesRepository)
+    public function __construct(CategorieRepository $categorieRepository)
     {
-        $this->categoriesRepository = $categoriesRepository;
+        $this->categorieRepository = $categorieRepository;
     }
 
     public function getFunctions()
@@ -24,7 +24,7 @@ class AppExtension extends AbstractExtension
 
     public function categorie(): array
     {
-        return $this->categoriesRepository->findAll();
+        return $this->categorieRepository->findAll();
     }
 
 }

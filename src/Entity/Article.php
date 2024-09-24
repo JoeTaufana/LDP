@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticlesRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ArticlesRepository::class)]
+#[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Articles
+class Article
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,12 +32,12 @@ class Articles
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateModification = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne(inversedBy: 'article')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Categories::class, inversedBy: 'articles')]
-    private Collection $categorie;
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
+    private Collection $categories;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -47,7 +47,7 @@ class Articles
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     #[ORM\PreUpdate]
@@ -134,25 +134,25 @@ class Articles
     }
 
     /**
-     * @return Collection<int, Categories>
+     * @return Collection<int, Categorie>
      */
     public function getCategorie(): Collection
     {
-        return $this->categorie;
+        return $this->categories;
     }
 
-    public function addCategorie(Categories $categorie): static
+    public function addCategorie(Categorie $categorie): static
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie->add($categorie);
+        if (!$this->categories->contains($categorie)) {
+            $this->categories->add($categorie);
         }
 
         return $this;
     }
 
-    public function removeCategorie(Categories $categorie): static
+    public function removeCategorie(Categorie $categorie): static
     {
-        $this->categorie->removeElement($categorie);
+        $this->categories->removeElement($categorie);
 
         return $this;
     }

@@ -38,8 +38,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $telephone = null;
 
-    #[ORM\OneToMany(targetEntity: Articles::class, mappedBy: 'user', orphanRemoval: true)]
-    private Collection $articles;
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $article;
 
     #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $evenement;
@@ -50,16 +50,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Membre::class, mappedBy: 'createur')]
     private Collection $membre;
 
-    #[ORM\OneToMany(targetEntity: Contacts::class, mappedBy: 'createur')]
-    private Collection $contacts; // Événements auxquels l'utilisateur participe
+    #[ORM\OneToMany(targetEntity: Coordonnee::class, mappedBy: 'createur')]
+    private Collection $coordonnee; // Événements auxquels l'utilisateur participe
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->article = new ArrayCollection();
         $this->evenement = new ArrayCollection();
         $this->participation = new ArrayCollection();
         $this->membre = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
+        $this->coordonnee = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,26 +188,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Articles>
+     * @return Collection<int, Article>
      */
-    public function getArticles(): Collection
+    public function getArticle(): Collection
     {
-        return $this->articles;
+        return $this->article;
     }
 
-    public function addArticle(Articles $article): static
+    public function addArticle(Article $article): static
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
+        if (!$this->article->contains($article)) {
+            $this->article->add($article);
             $article->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeArticle(Articles $article): static
+    public function removeArticle(Article $article): static
     {
-        if ($this->articles->removeElement($article)) {
+        if ($this->article->removeElement($article)) {
             // set the owning side to null (unless already changed)
             if ($article->getUser() === $this) {
                 $article->setUser(null);
@@ -306,26 +306,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Contacts>
+     * @return Collection<int, Coordonnee>
      */
-    public function getContacts(): Collection
+    public function getCoordonnee(): Collection
     {
-        return $this->contacts;
+        return $this->coordonnee;
     }
 
-    public function addContact(Contacts $contact): static
+    public function addContact(Coordonnee $contact): static
     {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts->add($contact);
+        if (!$this->coordonnee->contains($contact)) {
+            $this->coordonnee->add($contact);
             $contact->setCreateur($this);
         }
 
         return $this;
     }
 
-    public function removeContact(Contacts $contact): static
+    public function removeContact(Coordonnee $contact): static
     {
-        if ($this->contacts->removeElement($contact)) {
+        if ($this->coordonnee->removeElement($contact)) {
             // set the owning side to null (unless already changed)
             if ($contact->getCreateur() === $this) {
                 $contact->setCreateur(null);

@@ -40,3 +40,13 @@ php bin/phpunit --testdox
 ```bash
 php bin/console cache:clear
 ```
+
+## Production
+
+### Envoie des mails de Contacts
+
+Les mails de prise de contact sont stockés en BDD, pour les envoyer au gestionnaire par mail, il faut mettre en place un CRON sur:
+
+```bash
+symfony console app:send-contact
+```

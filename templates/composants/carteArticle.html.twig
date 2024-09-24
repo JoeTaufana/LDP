@@ -1,8 +1,8 @@
-<div class="carteArticle card">
-    <img src={{ asset(articles.file) }} class="card-img-top" alt="..." loading="lazy" >
+<article class="carteArticle card">
+    <img src={{ asset(article.file) }} class="card-img-top" alt="..." loading="lazy" >
     <div class="card-body">
-        <h5 class="card-title">{{ articles.titre }}</h5>
-        <p class="card-text">{{ articles.description|u.truncate(100, '...', false)}}</p>
-        <a href="#" class="">Voir plus</a>            
+        <h5 class="card-title">{{ article.titre }}</h5>
+        <p class="card-text">{{ article.description|u.truncate(100, '...', false)}}</p>
+        <a href="{{ path('articlesDetails', {'slug': article.slug}) }}" class="">Voir plus</a>            
     </div>
-</div>
+</article>
