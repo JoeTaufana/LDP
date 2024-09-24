@@ -1,10 +1,10 @@
 <section class="membres">
     <div class="container">
-        <h2 class="text-center">Notre équipe</h2>
+        <h2 class="text-center" data-aos="fade-right" data-aos-duration="2000">Notre équipe</h2>
         <div class="contentMembres col-12 col-lg-10 row gy-5 mx-auto justify-content-center align-items-center">
             {% for membre in membre %}
                 <div class="carteMembre col-12 col-md-5 d-flex align-items-center ">
-                    <div class="imgMembre col-4 col-md-3">
+                    <div class="imgMembre col-4 col-md-3" data-aos="flip-left" data-aos-duration="2000">
                         <img src="{{membre.file}}" class="img-fluid" alt="..." loading="lazy" >
                     </div>
                     <div class="infosMembre col-8 col-md-9">

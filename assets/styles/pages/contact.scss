@@ -1,0 +1,40 @@
+// assets/styles/pages/contact.scss
+
+// Importer les variables et mixins si nécessaire
+@import '../variables';
+@import '../mixins';
+
+.introContact{
+    background-color: $bg-color-2;
+    min-height: 100vh;
+    background: url("/public/img/hibiscus.webp") no-repeat 1% 80%;
+        background-size: calc(10vw + 50px);
+
+    .textCallToAction{
+        position: relative; 
+        z-index: 2; 
+        .vectorBottom {
+            animation: blink 2s infinite; /* Applique l'animation à .vectorBottom */
+        }
+        
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1; /* Entièrement visible au début et à la fin */
+            }
+            50% {
+                opacity: 0.3; /* Complètement invisible à mi-chemin */
+            }
+        }
+        
+
+        .imgContact.img{
+                width: 100%;
+                min-height: 100%;
+        }
+    }
+}
+.formContact {
+    background: url("/public/img/background/backgroundFeuillage.png") no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+}

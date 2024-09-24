@@ -5,11 +5,11 @@
 {% block body %}
     <section class="articlecategorie">
         <div class="container">
-        <h1 class="text-center">L'actualité de Lille du Pacifique</h1>
+        <h1 class="text-center" data-aos="fade-right" data-aos-duration="2000">L'actualité de Lille du Pacifique</h1>
         <div class="contentcategorie row justify-content-around aligns-item-center">
             {% for categorie in categories %}
                 {% set img = categorie.article|last %}
-                <div class="card col-10 col-md-6 col-lg-3">
+                <div class="card col-10 col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="2000">
                     <a href="{{ path('actualitesCategorie', {'slug': categorie.slug})}}">
                         <div class="img">
                             <img src="{{ asset(img.file) }}" class=" mx-auto d-block img-fluid" alt="..." loading="lazy">

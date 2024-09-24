@@ -5,12 +5,12 @@
 {% block body %}
     <section class="listarticle">
         <div class="container">
-        <h1>{{ categories.nom}}</h1>
+        <h1 data-aos="fade-right" data-aos-duration="2000">{{ categories.nom}}</h1>
         <p>{{ categories.description}}</p>
             <div class="row ">
             {% for article in articles %}
 
-                <div class="itemarticle  col-md-6 col-lg-4 ">
+                <div class="itemarticle  col-md-6 col-lg-4 " data-aos="fade-up" data-aos-duration="2000">
                     {% include 'composants/cartearticle.html.twig' with {'article': article} %}
                 </div>
 

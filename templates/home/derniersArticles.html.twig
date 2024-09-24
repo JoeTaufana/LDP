@@ -1,11 +1,11 @@
 <section>
     <div class="container">
-        <h2 class="derniersArticles">
+        <h2 class="derniersArticles" data-aos="fade-right" data-aos-duration="2000">
             Dernières actualités
         </h2>
-        <div class="articlesPostes row justify-beetween" >
+        <div class="articlesPostes row justify-beetween" data-aos="fade-up" data-aos-duration = "2400" data-aos-offset= "50" >
         {% for article in article %}
-            <div div class="col-12 col-md-4 mb-4 d-flex " data-aos="fade-up" data-aos-duration = "2400" data-aos-offset= "50">
+            <div div class="col-12 col-md-4 mb-4 d-flex " >
                     {% include 'composants/carteArticle.html.twig' with {'articles': article}%}
             </div>
             
