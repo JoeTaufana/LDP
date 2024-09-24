@@ -5,11 +5,11 @@
 {% block body %}
     <section>
         <div class="container">
-        <h1>L'actualité avec Lille du Pacifique 3</h1>
+        <h1 data-aos="fade-right" data-aos-duration="2000">L'actualité avec Lille du Pacifique 3</h1>
             <div>
             {% for article in article %}
 
-                <div class="itemarticle col-12  col-lg-4 ">
+                <div class="itemarticle col-12  col-lg-4 " data-aos="fade-up" data-aos-duration="2000">
                     {% include 'composants/cartearticle.html.twig' with {'articles': article} %}
                 </div>
 

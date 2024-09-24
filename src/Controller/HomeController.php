@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
+
 use App\Repository\ArticleRepository;
 use App\Repository\EvenementRepository;
-use App\Entity\Contact;
+use App\Repository\CoordonneeRepository;
 use App\Form\ContactType;
 use App\Service\ContactService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +20,8 @@ class HomeController extends AbstractController
     public function index(ArticleRepository $articleRepository, 
                         EvenementRepository $evenementRepository,
                         Request $request,
-                        ContactService $contactService
+                        ContactService $contactService,
+                        CoordonneeRepository $coordonneeRepository
         ): Response {
 
             $contact = new Contact();
@@ -33,10 +36,14 @@ class HomeController extends AbstractController
                 return $this->redirectToRoute('home');
         }
 
+        $coordonnees = $coordonneeRepository ->findAll();
+
         return $this->render('home/index.html.twig', [
             'article' => $articleRepository ->troisDerniers(),
             'evenement' => $evenementRepository ->derniers(),
             'formContact' => $form->createView(),
+            'coordonnee' => $coordonnees,
+
         ]);
     }
 }

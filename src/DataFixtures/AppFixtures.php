@@ -109,23 +109,23 @@ class AppFixtures extends Fixture
                 ->setCreateur($user);
 
             $manager->persist($membre);
-        
+        }
+
         // Créations de 5 coordonnees
         for ($i = 0; $i < 5; $i++){
             $coordonnee = new Coordonnee();
             $coordonnee->setNom($faker->lastName)
                 ->setPrenom($faker->firstName)
                 ->setTelephone($faker->phoneNumber)
-                ->setDescription($faker->text(100))
+                ->setDescription($faker->sentence(2))
                 ->setEmail($faker->email)
                 ->setCreateur($user);
 
             $manager->persist($coordonnee);
-
-        // Finaliser les changements en base de données
-        $manager->flush();
         }
 
+    // Finaliser les changements en base de données
+        $manager->flush();
     }
-}
+    
 }

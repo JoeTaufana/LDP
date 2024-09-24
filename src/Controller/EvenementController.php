@@ -23,7 +23,7 @@ class EvenementController extends AbstractController
             $evenements = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
-            3
+            10
             );
             
         return $this->render('evenement/agenda.html.twig', [

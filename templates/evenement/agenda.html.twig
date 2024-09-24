@@ -1,53 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}evenement à venir avec Lille du Pacifique{% endblock %}
+{% block title %}evenement à venir avec Lille du Pacifique
+{% endblock %}
 
 {% block body %}
-    <section class="agenda">
-        <div class="container">
-        <h1 class="text-center">Nos prochains rendez-vous</h1>
-            <div class="col-12 d-flex flex-column justify-content-center align-item-center">
-            {% for evenement in evenements %}
-                <div class="carteEvenement card col-10 mx-auto" style="max-width: 1330px;">
-                        <div class="contentEvenement col-12 row g-0">
-                            <!-- Image à gauche  -->
-                            <a href="{{ path('evenementsDetails', {'slug': evenement.slug}) }}" class="imgContent col-12 col-md-4 d-flex justify-content-center align-items-center">
-                            <img src="{{evenement.file}}" class="img-fluid rounded-start" alt="..." loading="lazy" >
-                            </a href="">
+	<section class="agenda">
+		<div class="container">
+			<h1 class="text-center" data-aos="fade-right" data-aos-duration="2000">Nos prochains rendez-vous</h1>
+			<div class="col-12 d-flex flex-column justify-content-center align-item-center">
+				{% for evenement in evenements %}
+					<div class="carteEvenement card col-10 mx-auto" style="max-width: 1330px;" data-aos="fade-up" data-aos-duration="2000">
+						<div
+							class="contentEvenement col-12 row g-0">
+							<!-- Image à gauche  -->
+							<a href="{{ path('evenementsDetails', {'slug': evenement.slug}) }}" class="imgContent col-12 col-md-4 d-flex justify-content-center align-items-center">
+								<img src="{{evenement.file}}" class="img-fluid rounded-start" alt="..." loading="lazy">
+							</a>
 
-                            <!-- Contenu à droite -->
-                            <div class="col-12 col-md-8 row">
+							<!-- Contenu à droite -->
+							<div
+								class="col-12 col-md-8 row">
 
-                                <!-- Colonne pour le nom, description et date -->
-                                <div class="card-body col- 12 col-md-8 d-flex flex-column justify-content-between">
-                                    <h5 class="card-title">{{ evenement.nom }}</h5>
-                                    <p class="card-text">{{ evenement.description|u.truncate(200, '...', false) }}</p>
-                                    <div class="col-12 row">
-                                        <p class="col-6 card-text">{{ evenement.rdv|date('d/m/y') }}</small></p>
-                                        <p class="col-6">{{ evenement.prix }} €</p>
-                                    </div>
-                                </div>
+								<!-- Colonne pour le nom, description et date -->
+								<div class="card-body col- 12 col-md-8 d-flex flex-column justify-content-between">
+									<h5 class="card-title">{{ evenement.nom }}</h5>
+									<p class="card-text">{{ evenement.description|u.truncate(200, '...', false) }}</p>
+									<div class="col-12 row">
+										<p class="col-6 card-text">{{ evenement.rdv|date('d/m/y') }}</p>
+									</small>
+								</p>
+								<p class="col-6">{{ evenement.prix }}
+									€</p>
+							</div>
+						</div>
 
-                                    <!-- Colonne pour l'adresse et le bouton -->
-                                    
-                                <div class="card-body col-4 d-flex flex-column justify-content-between">
-                                    <h5 class="card-title col-12">{{evenement.adresse}}</h5>
-                                    <div class="d-flex justify-content-end mt-auto">
-                                    <a href="{{ path('evenementsDetails', {'slug': evenement.slug}) }}"class="button-primary">Voir le détail</a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        
-                </div>
+						<!-- Colonne pour l'adresse et le bouton -->
 
-            {% endfor %}
-            </div>
-            <div class="d-flex justify-content-center">
-                {% do evenements.setPageRange(2) %}
-                {{ knp_pagination_render(evenements, 'base/pagination.html.twig')}}
-            </div>
-        </div>
-    </section>    
-{% endblock %}
+						<div class="card-body col-4 d-flex flex-column justify-content-between">
+							<h5 class="card-title col-12">{{evenement.adresse}}</h5>
+							<div class="d-flex justify-content-end mt-auto">
+								<a href="{{ path('evenementsDetails', {'slug': evenement.slug}) }}" class="button-primary">Voir le détail</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		{% endfor %}
+	</div>
+	<div class="d-flex justify-content-center">
+		{% do evenements.setPageRange(2) %}
+		{{ knp_pagination_render(evenements, 'base/pagination.html.twig')}}
+	</div>
+</div></section>{% endblock %}
