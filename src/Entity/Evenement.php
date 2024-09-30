@@ -35,19 +35,20 @@ class Evenement
     #[ORM\JoinColumn(nullable: false)]
     private ?User $createur = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'participation')]
-    #[ORM\JoinTable(name: 'user_evenement')]
-    private Collection $participant;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $slug = null; 
+    private ?string $slug = null;
 
-    public function __construct() {
-        $this->participant = new ArrayCollection();
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'Participants')]
+    private Collection $Participants;
+
+    public function __construct()
+    {
+        $this->Participants = new ArrayCollection();
     }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,32 +126,6 @@ class Evenement
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getParticipants(): Collection
-    {
-        return $this->participant;
-    }
-
-    public function addParticipant(User $user): static
-    {
-        if (!$this->participant->contains($user)) {
-            $this->participant->add($user);
-            $user->addParticipation($this);
-        }
-
-        return $this;
-    }
-    public function removeParticipant(User $user): static
-    {
-        if ($this->participant->removeElement($user)) {
-            $user->removeParticipation($this);
-        }
-
-        return $this;
-    }
-
     public function getFile(): ?string
     {
         return $this->file;
@@ -171,6 +146,30 @@ class Evenement
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->Participants;
+    }
+
+    public function addParticipant(User $participant): static
+    {
+        if (!$this->Participants->contains($participant)) {
+            $this->Participants->add($participant);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(User $participant): static
+    {
+        $this->Participants->removeElement($participant);
 
         return $this;
     }

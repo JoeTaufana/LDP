@@ -29,10 +29,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -44,22 +44,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $evenement;
 
-    #[ORM\ManyToMany(targetEntity: Evenement::class, mappedBy: 'participant')]
-    private Collection $participation;
-
     #[ORM\OneToMany(targetEntity: Membre::class, mappedBy: 'createur')]
     private Collection $membre;
 
     #[ORM\OneToMany(targetEntity: Coordonnee::class, mappedBy: 'createur')]
-    private Collection $coordonnee; // Événements auxquels l'utilisateur participe
+    private Collection $coordonnee;
+
+    #[ORM\ManyToMany(targetEntity: Evenement::class, mappedBy: 'Participant')]
+    private Collection $evenements;
+
+    #[ORM\ManyToMany(targetEntity: Evenement::class, mappedBy: 'Participant')]
+    private Collection $Participants; // Événements auxquels l'utilisateur participe
 
     public function __construct()
     {
         $this->article = new ArrayCollection();
         $this->evenement = new ArrayCollection();
-        $this->participation = new ArrayCollection();
         $this->membre = new ArrayCollection();
         $this->coordonnee = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
+        $this->Participants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -248,39 +252,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Evenement>
-     */
-    public function getParticipations(): Collection
-    {
-        return $this->participation;
-    }
-
-    public function addParticipation(Evenement $evenement): static
-    {
-        if (!$this->participation->contains($evenement)) {
-            $this->participation->add($evenement);
-            $evenement->addParticipant($this); // Assure que la relation bidirectionnelle est maintenue
-        }
-
-        return $this;
-    }
-
-    public function removeParticipation(Evenement $evenement): static
-    {
-        if ($this->participation->removeElement($evenement)) {
-            // Assure que la relation bidirectionnelle est maintenue
-            $evenement->removeParticipant($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Membre>
      */
     public function getMembre(): Collection
     {
-        return $this->Membre;
+        return $this->membre;
     }
 
     public function addMembre(Membre $membre): static
@@ -330,6 +306,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($contact->getCreateur() === $this) {
                 $contact->setCreateur(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Evenement>
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenements;
+    }
+
+    /**
+     * @return Collection<int, Evenement>
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->Participants;
+    }
+
+    public function addParticipant(Evenement $participant): static
+    {
+        if (!$this->Participants->contains($participant)) {
+            $this->Participants->add($participant);
+            $participant->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Evenement $participant): static
+    {
+        if ($this->Participants->removeElement($participant)) {
+            $participant->removeParticipant($this);
         }
 
         return $this;
