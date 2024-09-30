@@ -49,7 +49,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        return new RedirectResponse($this->urlGenerator->generate('actualites'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
@@ -57,4 +57,11 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+    #[Route(path: '/logout', name: 'logout')]
+    public function logout(): void
+    {
+    // Cette méthode peut rester vide
+    }
+
 }

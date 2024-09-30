@@ -1,22 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ evenement.nom }}{% endblock %}
+{% block title %}
+	{{ evenement.nom }}
+{% endblock %}
 
 {% block body %}
-    <section class="evenementDetails">
-        <div class="container">
-        <h1 class="text-center" data-aos="fade-right" data-aos-duration="2000">{{ evenement.nom }}</h1>
-            <div class="containerEvenementDetails col-12 d-flex justify-content-around">
-                <div class="contentEvenementsDetails col-lg-6 d-flex flex-column justify-content-evenly" data-aos="fade-right" data-aos-duration="2500">
-                    <p>{{ evenement.description}}</p>
-                    <p class="col-12">Date : <b>{{ evenement.rdv|date('d/m/y') }}</b></p>                    
-                    <p class="col-12">Lieu de rdv :<br><b>{{evenement.adresse}}</b></p>
-                    <p class="col-12">Montant de la participation : <b>{{ evenement.prix }}€</b></p>
-                </div>
-                <div class="imgEvenementsDetails col-lg-4 " data-aos="flip-right" data-aos-duration="2000">
-                    <img src="{{asset(evenement.file)}}" class="col-12" alt="..." loading="lazy" >
-                </div>
-            </div>
-        </div>
-    </section>    
+	<section class="evenementDetails ">
+		<div class="container d-flex flex-column justify-content-center">
+			<h1 class="text-center" data-aos="fade-right" data-aos-duration="2000">{{ evenement.nom }}</h1>
+			<div class="containerEvenementDetails col-12 d-flex justify-content-around">
+				<div class="contentEvenementsDetails col-lg-6 d-flex flex-column justify-content-evenly" data-aos="fade-right" data-aos-duration="2500">
+					<p>{{ evenement.description}}</p>
+					<p class="col-12">Date :
+						<b>{{ evenement.rdv|date('d/m/y') }}</b>
+					</p>
+					<p class="col-12">Lieu de rdv :<br><b>{{evenement.adresse}}</b>
+					</p>
+					<p class="col-12">Montant de la participation :
+						<b>{{ evenement.prix }}€</b>
+					</p>
+				</div>
+				<div class="imgEvenementsDetails col-lg-4 " data-aos="flip-right" data-aos-duration="2000">
+					<img src="{{asset(evenement.file)}}" class="col-12" alt="..." loading="lazy">
+				</div>
+			</div>
+			{% if app.user %}
+				<div class="col-12 d-flex flex-column align-items-center mt-5">
+					{% if evenement.participants.contains(app.user) %}
+
+						<p class="">Trop net! Tu participes déjà à cet événement.</p>
+						<form action="{{ path('evenementsDetails', {'slug': evenement.slug}) }}" method="post">
+							<button type="submit" class="button-warning mt-5">Aouh Je ne participe plus</button>
+						</form>
+					{% else %}
+						<p class="">Tu n'es pas encore inscrit?</p>
+						<form action="{{ path('evenementsDetails', {'slug': evenement.slug}) }}" method="post">
+							<button type="submit" class="button-secondary mt-5">Je participe !</button>
+						</form>
+					{% endif %}
+				{% else %}
+					<div>
+						<p class="">Tu n'es pas encore inscrit?</p>
+						<a href="{{ path('login') }}" class="button-secondary mt-5">Inscris-toi ici</a>
+					</div>
+				</div>
+			{% endif %}
+
+		</div>
+	</section>
 {% endblock %}
